@@ -6,10 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
 ENV PATH="/usr/local/texlive/bin:$PATH"
 
-RUN curl https://deb.nodesource.com/setup_12.x | bash
-RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         curl \
@@ -19,16 +15,21 @@ RUN apt-get update && \
         libfontconfig1-dev \
         libfreetype6-dev \
         ghostscript \
-        nodejs \
-        postgresql-client \
-        yarn \
         perl && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
+RUN curl https://deb.nodesource.com/setup_12.x | bash
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        nodejs \
+        postgresql-client \
+        yarn \
         build-essential \
         python3-pip \
         python3-dev && \
