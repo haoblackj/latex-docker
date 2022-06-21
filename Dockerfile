@@ -15,13 +15,14 @@ RUN apt-get update && \
         libfontconfig1-dev \
         libfreetype6-dev \
         ghostscript \
+        ca-certificates \
         perl && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 RUN rm -f /etc/ssl/certs/ca-bundle.crt
-RUN apt reinstall ca-certificates
+#RUN apt reinstall ca-certificates
 RUN update-ca-certificates
 
 RUN curl https://deb.nodesource.com/setup_12.x | bash
