@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
 ENV PATH="/usr/local/texlive/bin:$PATH"
 
-RUN \
-  --mount=type=cache,target=/var/cache/apt \
+RUN --mount=type=cache,target=/var/cache/apt \
   --mount=type=cache,target=/var/lib/apt \
   apt-get update && \
   apt-get install -y --no-install-recommends \
