@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:20.04
+FROM node:18
 
 MAINTAINER haoblackj
 
@@ -15,15 +15,15 @@ RUN \
   --mount=type=cache,target=/var/lib/apt \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-        curl \
         git \
         make \
-        wget \
         libfontconfig1-dev \
         libfreetype6-dev \
         ghostscript \
-        ca-certificates \
-        perl
+        perl \
+        build-essential \
+        python3-pip \
+        python3-dev && \
 
 RUN rm -f /etc/ssl/certs/ca-bundle.crt
 #RUN apt reinstall ca-certificates
@@ -34,18 +34,7 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 
-RUN  \
-  --mount=type=cache,target=/var/cache/apt \
-  --mount=type=cache,target=/var/lib/apt \
-  apt-get update && \
-    apt-get install -y --no-install-recommends \
-        nodejs \
-        postgresql-client \
-        yarn \
-        build-essential \
-        python3-pip \
-        python3-dev && \
-    pip3 install --no-cache-dir pygments && \
+RUN pip3 install --no-cache-dir pygments && \
     mkdir /tmp/install-tl-unx && \
     wget -O - ftp://tug.org/historic/systems/texlive/${TEXLIVE_VERSION}/install-tl-unx.tar.gz \
         | tar -xzv -C /tmp/install-tl-unx --strip-components=1 && \
