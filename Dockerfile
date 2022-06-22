@@ -1,4 +1,8 @@
+# syntax=docker/dockerfile:1
+
 FROM ubuntu:20.04
+
+MAINTAINER haoblackj
 
 ARG TEXLIVE_VERSION=2021
 
@@ -6,8 +10,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
 ENV PATH="/usr/local/texlive/bin:$PATH"
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN \
+  --mount=type=cache,target=/var/cache/apt \
+  --mount=type=cache,target=/var/lib/apt \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
         curl \
         git \
         make \
@@ -16,10 +23,7 @@ RUN apt-get update && \
         libfreetype6-dev \
         ghostscript \
         ca-certificates \
-        perl && \
-    apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+        perl
 
 RUN rm -f /etc/ssl/certs/ca-bundle.crt
 #RUN apt reinstall ca-certificates
@@ -30,7 +34,10 @@ RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 
-RUN apt-get update && \
+RUN  \
+  --mount=type=cache,target=/var/cache/apt \
+  --mount=type=cache,target=/var/lib/apt \
+  apt-get update && \
     apt-get install -y --no-install-recommends \
         nodejs \
         postgresql-client \
@@ -51,12 +58,10 @@ RUN apt-get update && \
     ln -sf /usr/local/texlive/${TEXLIVE_VERSION}/bin/$(uname -m)-linux /usr/local/texlive/bin && \
     apt-get remove -y --purge \
         build-essential \
-        python3 && \
-    apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+        python3
 
-RUN tlmgr update --self && \
+RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet && \
+    tlmgr update --self && \
     tlmgr install \
         collection-bibtexextra \
         collection-fontsrecommended \
