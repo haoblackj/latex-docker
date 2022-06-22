@@ -14,23 +14,12 @@ RUN --mount=type=cache,target=/var/cache/apt \
   --mount=type=cache,target=/var/lib/apt \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-        git \
-        make \
         libfontconfig1-dev \
         libfreetype6-dev \
         ghostscript \
-        perl \
         build-essential \
         python3-pip \
-        python3-dev && \
-
-RUN rm -f /etc/ssl/certs/ca-bundle.crt
-#RUN apt reinstall ca-certificates
-RUN update-ca-certificates
-
-RUN curl https://deb.nodesource.com/setup_12.x | bash
-RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+        python3-dev
 
 
 RUN pip3 install --no-cache-dir pygments && \
