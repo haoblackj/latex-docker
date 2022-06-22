@@ -58,13 +58,8 @@ jobs:
       - name: Build and push Docker image to GitHub Container Registry
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/cimage-ruby:${{ steps.prepare_build_arg.outputs.CURRENT_TAG }}
-          labels: |
-            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-          build-args: |
-            RUBY_VERSION=${{ steps.prepare_build_arg.outputs.RUBY_VERSION }}
-            BUNDLER_VERSION=${{ steps.prepare_build_arg.outputs.BUNDLER_VERSION }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:1.0.0
