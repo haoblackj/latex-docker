@@ -61,9 +61,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/haoblackj/${{ env.IMAGE_NAME }}:latest
-            ghcr.io/haoblackj/${{ env.IMAGE_NAME }}:1.0.0
+            ghcr.io/haoblackj/${{ env.image_name }}:latest
+            ghcr.io/haoblackj/${{ env.image_name }}:1.0.0
           cache-from: type=gha
           cache-to: type=gha,mode=max
         env:
-          IMAGE_NAME: latex-docker
+          image_name: latex-docker
