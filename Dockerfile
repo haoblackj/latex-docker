@@ -24,13 +24,13 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 RUN pip3 install --no-cache-dir pygments && \
     mkdir /tmp/install-tl-unx && \
-    wget -O - ftp://tug.org/historic/systems/texlive/${TEXLIVE_VERSION}/install-tl-unx.tar.gz \
+    wget -O - http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
         | tar -xzv -C /tmp/install-tl-unx --strip-components=1 && \
     /bin/echo -e 'selected_scheme scheme-basic\ntlpdbopt_install_docfiles 0\ntlpdbopt_install_srcfiles 0' \
         > /tmp/install-tl-unx/texlive.profile && \
     /tmp/install-tl-unx/install-tl \
         --profile /tmp/install-tl-unx/texlive.profile \
-        -repository  ftp://tug.org/texlive/historic/${TEXLIVE_VERSION}/tlnet-final/ && \
+        -repository  http://mirror.ctan.org/systems/texlive/tlnet/ && \
     rm -r /tmp/install-tl-unx && \
     ln -sf /usr/local/texlive/${TEXLIVE_VERSION}/bin/$(uname -m)-linux /usr/local/texlive/bin && \
     apt-get remove -y --purge \
