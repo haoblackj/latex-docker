@@ -55,13 +55,14 @@ RUN  \
         --profile /tmp/install-tl-unx/texlive.profile \
         -repository  ftp://tug.org/texlive/historic/${TEXLIVE_VERSION}/tlnet-final/ && \
     rm -r /tmp/install-tl-unx && \
+    --mount=type=cache,target=/usr/local/texlive/2021 && \
     ln -sf /usr/local/texlive/${TEXLIVE_VERSION}/bin/$(uname -m)-linux /usr/local/texlive/bin && \
     apt-get remove -y --purge \
         build-essential \
         python3
 
-RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet && \
-    tlmgr update --self && \
+RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+RUN tlmgr update --self && \
     tlmgr install \
         collection-bibtexextra \
         collection-fontsrecommended \
