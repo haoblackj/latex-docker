@@ -1,0 +1,72 @@
+{
+  "editor.formatOnSave": true,
+  "textlint.autoFixOnSave": true,
+  "textlint.run": "onType",
+  "files.associations": {
+    "*.md": "markdown"
+  },
+  "git.autofetch": true,
+  "git.fetchOnPull": true,
+  "git.autoRepositoryDetection": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.experimental.mergeEditor": true,
+  "editor.detectIndentation": false,
+  "editor.comments.insertSpace": false,
+  "editor.tabSize": 2,
+  "gitlens.advanced.messages": {
+    "suppressGitMissingWarning": true
+  },
+  "git.ignoreMissingGitWarning": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.wordWrap": "bounded",
+  "textlint.languages": [
+    "novel",
+    "markdown",
+    "plaintext",
+    "html",
+    "tex",
+    "latex",
+    "doctex"
+  ],
+  "update.showReleaseNotes": false,
+  "files.autoSave": "afterDelay",
+  "git-graph.openNewTabEditorGroup": "Beside",
+  "githubPullRequests.fileListLayout": "flat",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.bracketPairColorization.enabled": true,
+  "textlint.trace": "messages",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/themes/**": true,
+    "**/GoogleDrive/**": true,
+    "**/Dropbox/**": true,
+    "**/Pictures/**": true
+  },
+  "git.ignoreSubmodules": true,
+  "git.detectSubmodules": false,
+  "files.autoSaveDelay": 5000,
+  "files.exclude": {
+    "/.git": true,
+    "/.DS_Store": true,
+    "/node_modules": true,
+    "/node_modules/": true
+  },
+  "search.exclude": {
+    "/node_modules": true
+  },
+  "gitlens.views.repositories.avatars": false,
+  "git.ignoreRebaseWarning": true,
+  "editor.semanticHighlighting.enabled": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "remote.portsAttributes": {
+    "8002": {
+      "label": "Zenn Preview",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
