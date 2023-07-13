@@ -6,7 +6,7 @@
 カレントディレクトリにビルドしたいtexソースがあるとする．
 
 ```bash
-$ docker run -u $(id -u):$(id -g) --rm -v $PWD:/workdir pddg/latex latexmk main.tex
+$ docker run -u $(id -u):$(id -g) --rm -v $PWD:/workdir haoblackj/latex latexmk main.tex
 ```
 
 これでカレントディレクトリに`main.pdf`ができる．
@@ -26,18 +26,18 @@ $ docker run -u $(id -u):$(id -g) --rm -v $PWD:/workdir pddg/latex latexmk main.
 ## Pull image
 
 ```
-docker pull pddg/latex
+docker pull haoblackj/latex
 ```
 
 or
 
 ```
-docker pull ghcr.io/pddg/latex
+docker pull ghcr.io/haoblackj/latex
 ```
 
 ## Author
 
-pddg
+haoblackj
 
 ## License
 
