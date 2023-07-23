@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:20.04
+FROM nikolaik/python-nodejs:python3.11-nodejs18-alpine
 
 ARG TEXLIVE_VERSION=2023
 
@@ -22,29 +22,6 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && \
-    apt update && \
-    apt-get install -y --no-install-recommends \
-        tzdata && \
-    apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    apt update && \
-    apt-get install -y --no-install-recommends \
-        nodejs && \
-    apt-get clean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    apt update && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        python3-pip \
-        python3-dev
-
 RUN pip3 install --no-cache-dir pygments && \
     mkdir /tmp/install-tl-unx && \
     wget -O - http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
@@ -56,9 +33,6 @@ RUN pip3 install --no-cache-dir pygments && \
         -repository  http://mirror.ctan.org/systems/texlive/tlnet/ && \
     rm -r /tmp/install-tl-unx && \
     ln -sf /usr/local/texlive/${TEXLIVE_VERSION}/bin/$(uname -m)-linux /usr/local/texlive/bin && \
-    apt-get remove -y --purge \
-        build-essential \
-        python3 && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
