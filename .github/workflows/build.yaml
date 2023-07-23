@@ -49,10 +49,10 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           provenance: false
           tags: |
-            ghcr.io/haoblackj/latex:latest-${{ matrix.arch }}
-            ghcr.io/haoblackj/latex:${{ env.VERSION }}-${{ matrix.arch }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/latex:latest-${{ matrix.arch }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/latex:${{ env.VERSION }}-${{ matrix.arch }}
+            ghcr.io/haoblackj/latex-docker:latest-${{ matrix.arch }}
+            ghcr.io/haoblackj/latex-docker:${{ env.VERSION }}-${{ matrix.arch }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:latest-${{ matrix.arch }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:${{ env.VERSION }}-${{ matrix.arch }}
   manifest:
     runs-on: ubuntu-20.04
     needs: build
