@@ -1,0 +1,22 @@
+{
+  "name": "latex-docker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/haoblackj/latex-docker",
+  "author": "haoblackj <17177994+haoblackj@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^11.0.4",
+    "semantic-release": "^21.0.7"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator"
+    ]
+  }
+}
