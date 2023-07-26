@@ -10,7 +10,7 @@ FROM node:18-bullseye
 COPY --from=texlive /usr/local/texlive /usr/local/texlive
 
 # Add TeX Live binaries to PATH
-ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/$(ls /usr/local/texlive/ | sort -n | tail -1)/bin/x86_64-linux:${PATH}"
 
 # Set work directory
 WORKDIR /workdir
