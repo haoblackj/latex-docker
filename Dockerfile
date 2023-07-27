@@ -9,11 +9,14 @@ FROM node:18-bullseye
 # Copy TeX Live installation from Stage 1
 COPY --from=texlive /usr/local/texlive /usr/local/texlive
 
-# Add TeX Live binaries to PATH
-ENV PATH="/usr/local/texlive/$(ls /usr/local/texlive/ | sort -n | tail -1)/bin/x86_64-linux:${PATH}"
-
 # Set work directory
 WORKDIR /workdir
 
 COPY .latexmkrc /
 COPY .latexmkrc /root/
+
+# Add entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
